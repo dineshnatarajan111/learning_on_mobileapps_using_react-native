@@ -1,0 +1,69 @@
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import ColorCounter from './components/ColorCounter';
+
+const SquareScreen = () => {
+const [red,setRed] = useState(0);
+const [blue,setBlue] = useState(0);
+const [green,setGreen] = useState(0);
+
+const setColor = (color,colorChange) => {
+    switch (color) {
+        case 'red' :
+            if(color + colorChange > 255 || color + colorChange < 0) {
+                return;
+            } else {
+                setRed(red + colorChange);
+            }
+            return;
+        case 'green' :
+            if({color} + colorChange > 255 || {color} + colorChange < 0) {
+                return;
+            } else {
+                setGreen(green + colorChange);
+            }
+            return;
+        case 'blue' :
+            if({color} + colorChange > 255 || {color} + colorChange < 0) {
+                return;
+            } else {
+                setBlue(blue + colorChange);
+            }
+            return;
+        default :
+            return;
+    }
+} ;
+
+
+    return(
+        <View>
+            <ColorCounter 
+             onIncrease = { () => setColor('red', 10)}
+             onDecrease = { () => setColor('red', -1 * 10)}
+             type="Red" />
+            <ColorCounter
+             onIncrease = { () => setColor('green', 10)}
+             onDecrease = { () => setColor('green', -1 * 10)}
+             type="Green" />
+            <ColorCounter 
+             onIncrease = { () => setColor('blue', 10)}
+             onDecrease = { () => setColor('blue', -1 * 10)}
+             type="Blue" />
+             <View style={{
+                 height:100,
+                 width:100,
+                 backgroundColor: `rgb(${red},${green},${blue})`
+                 }} 
+            />
+        </View>
+    );
+};
+
+const styles= StyleSheet.create({
+    box:{
+        
+    },
+});
+
+export default SquareScreen;
